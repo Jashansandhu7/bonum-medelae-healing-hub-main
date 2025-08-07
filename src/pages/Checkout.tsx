@@ -27,10 +27,10 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
   });
   const [isLoading, setIsLoading] = useState(false);
   
-  const subtotal = cartItems.reduce((sum, item) => sum + (item.tradePrice * item.quantity), 0);
+  const subtotal = cartItems.reduce((sum, item) => sum + (item.mrpPerUnit * item.quantity), 0);
   const gst = cartItems.reduce((sum, item) => {
     const gstRate = parseFloat(item.gst.replace('%', '')) / 100;
-    return sum + (item.tradePrice * item.quantity * gstRate);
+    return sum + (item.mrpPerUnit * item.quantity * gstRate);
   }, 0);
   const total = subtotal + gst;
 
@@ -69,7 +69,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
 
   const generateWhatsAppMessage = (orderId: string) => {
     const orderDetails = cartItems.map(item => 
-      `• ${item.name}\n  Quantity: ${item.quantity}\n  Price: ₹${item.tradePrice} each\n`
+      `• ${item.name}\n  Quantity: ${item.quantity}\n  Price: ₹${item.mrpPerUnit} each\n`
     ).join("\n");
 
     return `*NEW ORDER*\n` +
@@ -108,7 +108,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
         cartItems: cartItems.map(item => ({
           id: item.id,
           name: item.name,
-          tradePrice: parseFloat(item.tradePrice) || 0,
+          tradePrice: parseFloat(item.mrpPerUnit) || 0, // Use mrpPerUnit as tradePrice for API
           gst: item.gst || "12%",
           quantity: parseInt(item.quantity) || 1
         }))
@@ -271,7 +271,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                         <div className="flex-1">
                           <h4 className="font-medium">{item.name}</h4>
                           <p className="text-sm text-muted-foreground mt-1">
-                            ₹{item.tradePrice} x {item.quantity}
+                            ₹{item.mrpPerUnit} x {item.quantity}
                           </p>
                           <div className="flex gap-2 mt-2">
                             <Badge variant="secondary" className="text-xs">
@@ -284,7 +284,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                         </div>
                         <div className="text-right">
                           <p className="font-medium">
-                            ₹{(item.tradePrice * item.quantity).toFixed(2)}
+                            ₹{(item.mrpPerUnit * item.quantity).toFixed(2)}
                           </p>
                         </div>
                       </div>
@@ -461,9 +461,14 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                   <p className="text-sm text-muted-foreground mb-3">
                     Contact us for any assistance with your order.
                   </p>
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => window.location.href = 'tel:+918708885643'}
+                  >
                     <Phone className="w-4 h-4 mr-2" />
-                    Call Support
+                    Call Support (+91 8708885643)
                   </Button>
                 </CardContent>
               </Card>
