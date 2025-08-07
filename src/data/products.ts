@@ -7,7 +7,6 @@ export interface Product {
   packSize: string;
   packing: string;
   mrpPerUnit: number;
-  tradePrice: number;
   gst: string;
   category: string;
   image: string;
@@ -22,7 +21,6 @@ export const products: Product[] = [
     packSize: "20X10",
     packing: "BLISTER",
     mrpPerUnit: 999.00,
-    tradePrice: 300.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("abf-100")
@@ -34,7 +32,6 @@ export const products: Product[] = [
     packSize: "1x5x10",
     packing: "AMP",
     mrpPerUnit: 70.00,
-    tradePrice: 8.00,
     gst: "12%",
     category: "INJECTIONS",
     image: getProductImage("abf-plus-injection")
@@ -46,7 +43,6 @@ export const products: Product[] = [
     packSize: "1x1",
     packing: "BLISTER",
     mrpPerUnit: 25.00,
-    tradePrice: 2.90,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("alba-worm")
@@ -58,7 +54,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1200.00,
-    tradePrice: 102.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("apenosa-spas")
@@ -70,7 +65,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1350.00,
-    tradePrice: 99.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("apenosa-sp-15")
@@ -82,7 +76,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1150.00,
-    tradePrice: 92.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("apenosa-sp")
@@ -94,7 +87,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "BLISTER",
     mrpPerUnit: 750.00,
-    tradePrice: 55.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("apenosa-p")
@@ -106,7 +98,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1100.00,
-    tradePrice: 91.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("apenosa-mr")
@@ -118,7 +109,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 990.00,
-    tradePrice: 90.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("apenosa-dsp")
@@ -130,7 +120,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "BLISTER",
     mrpPerUnit: 2477.40,
-    tradePrice: 415.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("b-trac-200")
@@ -142,7 +131,6 @@ export const products: Product[] = [
     packSize: "1X20",
     packing: "BLISTER",
     mrpPerUnit: 666.40,
-    tradePrice: 100.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("bconazole-400")
@@ -154,7 +142,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 5750.00,
-    tradePrice: 850.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("besfirox-500")
@@ -166,7 +153,6 @@ export const products: Product[] = [
     packSize: "10 X 6",
     packing: "BLISTER",
     mrpPerUnit: 780.00,
-    tradePrice: 280.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("besithro-250")
@@ -178,7 +164,6 @@ export const products: Product[] = [
     packSize: "10x3",
     packing: "BLISTER",
     mrpPerUnit: 790.00,
-    tradePrice: 280.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("besithro-500")
@@ -190,7 +175,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 2500.00,
-    tradePrice: 430.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("besixime-o")
@@ -202,7 +186,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 2250.00,
-    tradePrice: 435.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("besixime-oz")
@@ -214,7 +197,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1050.00,
-    tradePrice: 220.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("besixime-100dt")
@@ -226,7 +208,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1095.30,
-    tradePrice: 370.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("besixime-200")
@@ -238,7 +219,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1250.00,
-    tradePrice: 94.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("belslzine-m")
@@ -250,7 +230,6 @@ export const products: Product[] = [
     packSize: "1*10",
     packing: "ALU ALU",
     mrpPerUnit: 2500.00,
-    tradePrice: 430.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("bespodox-200")
@@ -262,7 +241,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "BLISTER",
     mrpPerUnit: 980.00,
-    tradePrice: 80.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("bomcold")
@@ -274,7 +252,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "BLISTER",
     mrpPerUnit: 1250.00,
-    tradePrice: 185.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("bonumflox-oz-tablets")
@@ -287,7 +264,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1050.00,
-    tradePrice: 88.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("bonumrab-dsr")
@@ -299,7 +275,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 2000.00,
-    tradePrice: 155.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("bonumrab-sl")
@@ -311,7 +286,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 550.00,
-    tradePrice: 38.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("halt-vom")
@@ -323,7 +297,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "BLISTER",
     mrpPerUnit: 700.00,
-    tradePrice: 53.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("mef-b-spas")
@@ -335,7 +308,6 @@ export const products: Product[] = [
     packSize: "10 X10",
     packing: "ALU ALU",
     mrpPerUnit: 1100.00,
-    tradePrice: 145.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("myca-p-75")
@@ -347,7 +319,6 @@ export const products: Product[] = [
     packSize: "5 ML",
     packing: "DROP",
     mrpPerUnit: 60.00,
-    tradePrice: 9.50,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("oreja")
@@ -359,7 +330,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "BLISTER",
     mrpPerUnit: 700.00,
-    tradePrice: 38.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("p-namo")
@@ -371,7 +341,6 @@ export const products: Product[] = [
     packSize: "10 X6",
     packing: "ALU ALU",
     mrpPerUnit: 1229.70,
-    tradePrice: 385.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("synoxyclav-625")
@@ -383,7 +352,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 850.00,
-    tradePrice: 70.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("gacitor")
@@ -396,7 +364,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1500.00,
-    tradePrice: 99.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("gacitor-dsr")
@@ -408,7 +375,6 @@ export const products: Product[] = [
     packSize: "Unit Pack",
     packing: "BOTTEL",
     mrpPerUnit: 175.00,
-    tradePrice: 24.00,
     gst: "12%",
     category: "INJECTIONS",
     image: getProductImage("bestriaxon-s")
@@ -420,7 +386,6 @@ export const products: Product[] = [
     packSize: "Unit Pack",
     packing: "BOTTEL",
     mrpPerUnit: 71.00,
-    tradePrice: 16.50,
     gst: "12%",
     category: "INJECTIONS",
     image: getProductImage("bestriaxon-inj")
@@ -432,7 +397,6 @@ export const products: Product[] = [
     packSize: "1x5x10",
     packing: "AMP",
     mrpPerUnit: 60.00,
-    tradePrice: 7.50,
     gst: "12%",
     category: "INJECTIONS",
     image: getProductImage("abf-injection")
@@ -444,7 +408,6 @@ export const products: Product[] = [
     packSize: "1x5x10",
     packing: "blister",
     mrpPerUnit: 16.50,
-    tradePrice: 2.75,
     gst: "12%",
     category: "INJECTIONS",
     image: getProductImage("apenosa-d-inj")
@@ -457,7 +420,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 1500.00,
-    tradePrice: 105.00,
     gst: "18%",
     category: "PREBIOTIC AND PROBIOTIC",
     image: getProductImage("probinorm")
@@ -470,7 +432,6 @@ export const products: Product[] = [
     packSize: "60ml",
     packing: "bottle",
     mrpPerUnit: 90.00,
-    tradePrice: 15.00,
     gst: "12%",
     category: "SYRUPS",
     image: getProductImage("bonumflox-oz")
@@ -482,7 +443,6 @@ export const products: Product[] = [
     packSize: "200 ml",
     packing: "Bottle",
     mrpPerUnit: 170.00,
-    tradePrice: 18.75,
     gst: "18%",
     category: "SYRUPS",
     image: getProductImage("livzor-200")
@@ -494,7 +454,6 @@ export const products: Product[] = [
     packSize: "100 ml.",
     packing: "Bottle",
     mrpPerUnit: 95.00,
-    tradePrice: 12.50,
     gst: "12%",
     category: "SYRUPS",
     image: getProductImage("quelcold")
@@ -506,7 +465,6 @@ export const products: Product[] = [
     packSize: "100ml",
     packing: "Bottle",
     mrpPerUnit: 90.00,
-    tradePrice: 10.50,
     gst: "12%",
     category: "SYRUPS",
     image: getProductImage("quelcold-ex")
@@ -518,7 +476,6 @@ export const products: Product[] = [
     packSize: "100ml",
     packing: "Bottle",
     mrpPerUnit: 110.00,
-    tradePrice: 13.00,
     gst: "12%",
     category: "SYRUPS",
     image: getProductImage("quelkof-ls")
@@ -530,7 +487,6 @@ export const products: Product[] = [
     packSize: "100 ml.",
     packing: "Botttle",
     mrpPerUnit: 95.00,
-    tradePrice: 10.85,
     gst: "12%",
     category: "SYRUPS",
     image: getProductImage("quelkof-dx")
@@ -542,7 +498,6 @@ export const products: Product[] = [
     packSize: "30ML",
     packing: "BOTTLE",
     mrpPerUnit: 69.21,
-    tradePrice: 22.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: getProductImage("synoxyclav-lb-625")
@@ -555,7 +510,6 @@ export const products: Product[] = [
     packSize: "4X1",
     packing: "BOTTLE",
     mrpPerUnit: 380.00,
-    tradePrice: 35.00,
     gst: "12%",
     category: "IRON AND CALCIUM RANGE",
     image: getProductImage("calcio-60k")
@@ -567,7 +521,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "Blister",
     mrpPerUnit: 2400.00,
-    tradePrice: 250.00,
     gst: "18%",
     category: "IRON AND CALCIUM RANGE",
     image: getProductImage("calcio-max")
@@ -579,7 +532,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "Blister",
     mrpPerUnit: 800.00,
-    tradePrice: 69.00,
     gst: "12%",
     category: "IRON AND CALCIUM RANGE",
     image: getProductImage("calcio-d3")
@@ -591,7 +543,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "Alu Alu",
     mrpPerUnit: 1500.00,
-    tradePrice: 140.00,
     gst: "12%",
     category: "IRON AND CALCIUM RANGE",
     image: getProductImage("feroboom-xt-tablets")
@@ -603,7 +554,6 @@ export const products: Product[] = [
     packSize: "200ML",
     packing: "Bottle",
     mrpPerUnit: 150.00,
-    tradePrice: 17.00,
     gst: "18%",
     category: "IRON AND CALCIUM RANGE",
     image: getProductImage("feroboom-xt-bootle")
@@ -617,7 +567,6 @@ export const products: Product[] = [
     packSize: "Unit Pack",
     packing: "JAR",
     mrpPerUnit: 250.00,
-    tradePrice: 38.00,
     gst: "18%",
     category: "MULTIVITAMINS",
     image: getProductImage("bm-pro")
@@ -629,7 +578,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "BLISTER",
     mrpPerUnit: 3100.00,
-    tradePrice: 200.00,
     gst: "18%",
     category: "MULTIVITAMINS",
     image: getProductImage("bm-11g")
@@ -641,7 +589,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 2800.00,
-    tradePrice: 210.00,
     gst: "18%",
     category: "MULTIVITAMINS",
     image: getProductImage("bm-immune")
@@ -653,7 +600,6 @@ export const products: Product[] = [
     packSize: "10 x10",
     packing: "Alu Alu",
     mrpPerUnit: 1400.00,
-    tradePrice: 110.00,
     gst: "18%",
     category: "MULTIVITAMINS",
     image: "/api/placeholder/300/200"
@@ -665,7 +611,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 1450.00,
-    tradePrice: 140.00,
     gst: "18%",
     category: "MULTIVITAMINS",
     image: getProductImage("myca-ala")
@@ -678,7 +623,6 @@ export const products: Product[] = [
     packSize: "30 gm.",
     packing: "Tube",
     mrpPerUnit: 105.00,
-    tradePrice: 12.00,
     gst: "12%",
     category: "GEL",
     image: getProductImage("apenosa-d-gel")
@@ -690,7 +634,6 @@ export const products: Product[] = [
     packSize: "15gm",
     packing: "Tube",
     mrpPerUnit: 82.00,
-    tradePrice: 11.50,
     gst: "12%",
     category: "GEL",
     image: getProductImage("medoderm")
@@ -703,7 +646,6 @@ export const products: Product[] = [
     packSize: "50 ml",
     packing: "Bottle",
     mrpPerUnit: 110.00,
-    tradePrice: 21.25,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("apenosa-oil")
@@ -715,7 +657,6 @@ export const products: Product[] = [
     packSize: "200 ml",
     packing: "Bottle",
     mrpPerUnit: 125.00,
-    tradePrice: 21.00,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("bon-2-tone")
@@ -727,7 +668,6 @@ export const products: Product[] = [
     packSize: "200 ml",
     packing: "Bottle",
     mrpPerUnit: 175.00,
-    tradePrice: 22.50,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("bonculi-syp")
@@ -739,7 +679,6 @@ export const products: Product[] = [
     packSize: "200 ml",
     packing: "Bottle",
     mrpPerUnit: 120.00,
-    tradePrice: 20.00,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("bonum-liv")
@@ -751,7 +690,6 @@ export const products: Product[] = [
     packSize: "200 ml",
     packing: "Bottle",
     mrpPerUnit: 120.00,
-    tradePrice: 20.00,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("bonumzyme")
@@ -763,7 +701,6 @@ export const products: Product[] = [
     packSize: "200 ML",
     packing: "BOTTLE",
     mrpPerUnit: 115.00,
-    tradePrice: 18.50,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("b-pure")
@@ -775,7 +712,6 @@ export const products: Product[] = [
     packSize: "200 ml",
     packing: "Bottle",
     mrpPerUnit: 150.00,
-    tradePrice: 20.00,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("liv-zim-syrup")
@@ -787,7 +723,6 @@ export const products: Product[] = [
     packSize: "30 CAP",
     packing: "Bottle",
     mrpPerUnit: 900.00,
-    tradePrice: 95.00,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("ovume")
@@ -799,7 +734,6 @@ export const products: Product[] = [
     packSize: "100ML",
     packing: "Bottle",
     mrpPerUnit: 99.00,
-    tradePrice: 13.50,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("tusse-cura")
@@ -811,7 +745,6 @@ export const products: Product[] = [
     packSize: "200 ML",
     packing: "Bottle",
     mrpPerUnit: 120.00,
-    tradePrice: 20.00,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("witt-plus")
@@ -824,7 +757,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "Blister",
     mrpPerUnit: 1700.00,
-    tradePrice: 325.00,
     gst: "18%",
     category: "SPECIAL COMBINATIONS",
     image: getProductImage("vasalus")
@@ -838,7 +770,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "BLISTER",
     mrpPerUnit: 550.00,
-    tradePrice: 38.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: "/api/placeholder/300/200"
@@ -850,7 +781,6 @@ export const products: Product[] = [
     packSize: "10x10",
     packing: "ALU ALU",
     mrpPerUnit: 500.00,
-    tradePrice: 32.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: "/api/placeholder/300/200"
@@ -862,7 +792,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 1200.00,
-    tradePrice: 145.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: "/api/placeholder/300/200"
@@ -874,7 +803,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 1200.00,
-    tradePrice: 105.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: "/api/placeholder/300/200"
@@ -886,7 +814,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 1550.00,
-    tradePrice: 190.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: "/api/placeholder/300/200"
@@ -898,7 +825,6 @@ export const products: Product[] = [
     packSize: "Unit Pack",
     packing: "BOTTEL",
     mrpPerUnit: 56.50,
-    tradePrice: 7.65,
     gst: "12%",
     category: "INJECTIONS",
     image: "/api/placeholder/300/200"
@@ -911,7 +837,6 @@ export const products: Product[] = [
     packSize: "60 ml.",
     packing: "bottle",
     mrpPerUnit: 60.00,
-    tradePrice: 11.65,
     gst: "12%",
     category: "SYRUPS",
     image: "/api/placeholder/300/200"
@@ -923,7 +848,6 @@ export const products: Product[] = [
     packSize: "200 ML",
     packing: "Bottle",
     mrpPerUnit: 150.00,
-    tradePrice: 21.00,
     gst: "12%",
     category: "SYRUPS",
     image: "/api/placeholder/300/200"
@@ -937,7 +861,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "BLISTER",
     mrpPerUnit: 1500.00,
-    tradePrice: 180.00,
     gst: "18%",
     category: "MULTIVITAMINS",
     image: "/api/placeholder/300/200"
@@ -950,7 +873,6 @@ export const products: Product[] = [
     packSize: "30 CAP",
     packing: "BOTTLE",
     mrpPerUnit: 900.00,
-    tradePrice: 80.00,
     gst: "12%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -964,7 +886,6 @@ export const products: Product[] = [
     packSize: "100 GM",
     packing: "JAR",
     mrpPerUnit: 270.00,
-    tradePrice: 55.00,
     gst: "2.5%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -977,7 +898,6 @@ export const products: Product[] = [
     packSize: "120GM",
     packing: "JAR",
     mrpPerUnit: 120.00,
-    tradePrice: 30.00,
     gst: "2.5%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -991,7 +911,6 @@ export const products: Product[] = [
     packSize: "30CAP",
     packing: "JAR",
     mrpPerUnit: 900.00,
-    tradePrice: 53.00,
     gst: "12.0%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1003,7 +922,6 @@ export const products: Product[] = [
     packSize: "100GM",
     packing: "JAR",
     mrpPerUnit: 225.00,
-    tradePrice: 65.00,
     gst: "2.5%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1015,7 +933,6 @@ export const products: Product[] = [
     packSize: "100GM",
     packing: "JAR",
     mrpPerUnit: 195.00,
-    tradePrice: 55.00,
     gst: "2.5%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1027,7 +944,6 @@ export const products: Product[] = [
     packSize: "100 GM",
     packing: "JAR",
     mrpPerUnit: 250.00,
-    tradePrice: 100.00,
     gst: "2.5%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1039,7 +955,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 850.00,
-    tradePrice: 99.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: "/api/placeholder/300/200"
@@ -1051,7 +966,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 2000.00,
-    tradePrice: 155.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: "/api/placeholder/300/200"
@@ -1063,7 +977,6 @@ export const products: Product[] = [
     packSize: "10X10",
     packing: "ALU ALU",
     mrpPerUnit: 3990.00,
-    tradePrice: 615.00,
     gst: "12%",
     category: "TABLETS AND CAPSULES",
     image: "/api/placeholder/300/200"
@@ -1075,7 +988,6 @@ export const products: Product[] = [
     packSize: "10X4",
     packing: "ALU ALU",
     mrpPerUnit: 1100.00,
-    tradePrice: 85.00,
     gst: "12%",
     category: "IRON AND CALCIUM RANGE",
     image: "/api/placeholder/300/200"
@@ -1087,7 +999,6 @@ export const products: Product[] = [
     packSize: "200ML",
     packing: "Bottle",
     mrpPerUnit: 159.00,
-    tradePrice: 17.00,
     gst: "18%",
     category: "MULTIVITAMINS",
     image: getProductImage("bonum-vit")
@@ -1099,7 +1010,6 @@ export const products: Product[] = [
     packSize: "200 ML",
     packing: "Bottle",
     mrpPerUnit: 145.00,
-    tradePrice: 22.50,
     gst: "12%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1111,7 +1021,6 @@ export const products: Product[] = [
     packSize: "200 ML",
     packing: "Bottle",
     mrpPerUnit: 142.00,
-    tradePrice: 22.50,
     gst: "12%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1123,7 +1032,6 @@ export const products: Product[] = [
     packSize: "100 GM",
     packing: "JAR",
     mrpPerUnit: 130.00,
-    tradePrice: 29.00,
     gst: "2.5%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1135,7 +1043,6 @@ export const products: Product[] = [
     packSize: "100 GM",
     packing: "JAR",
     mrpPerUnit: 100.00,
-    tradePrice: 26.00,
     gst: "2.5%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1147,7 +1054,6 @@ export const products: Product[] = [
     packSize: "60 GM",
     packing: "JAR",
     mrpPerUnit: 200.00,
-    tradePrice: 26.00,
     gst: "2.5%",
     category: "AYURVEDIC",
     image: "/api/placeholder/300/200"
@@ -1159,7 +1065,6 @@ export const products: Product[] = [
     packSize: "50 ml ",
     packing: "Bottle",
     mrpPerUnit: 135.00,
-    tradePrice: 28.00,
     gst: "12%",
     category: "AYURVEDIC",
     image: getProductImage("apenosa-oil")
