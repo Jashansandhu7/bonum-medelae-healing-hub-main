@@ -144,7 +144,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
 
       if (result.success) {
         const message = generateWhatsAppMessage(result.orderId || `BM${Date.now()}`);
-        const whatsappNumber = "919817570256";
+        const whatsappNumber = "918708885643";
         const encodedMessage = encodeURIComponent(message);
         
         // Open WhatsApp
@@ -175,7 +175,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
       
       if (shouldContinueToWhatsApp) {
         const message = generateWhatsAppMessage(`BM${Date.now()}`);
-        const whatsappNumber = "919817570256";
+        const whatsappNumber = "918708885643";
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
         
