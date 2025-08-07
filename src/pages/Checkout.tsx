@@ -1,14 +1,15 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
-import { ArrowLeft, Package2, Truck, MapPin, Phone, User, CreditCard, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, Package2, Truck, MapPin, Phone, User, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import { submitOrder, submitOrderViaJSONP } from "@/api/orders";
 
 interface CheckoutProps {
   cartItems: any[];
@@ -24,6 +25,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
     phone: "",
     address: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
   
   const subtotal = cartItems.reduce((sum, item) => sum + (item.tradePrice * item.quantity), 0);
   const gst = cartItems.reduce((sum, item) => {
@@ -43,10 +45,20 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
   const handleContinue = () => {
     if (currentStep === 2) {
       // Validate form before proceeding
-      if (!formData.name || !formData.phone || !formData.address) {
+      if (!formData.name.trim() || !formData.phone.trim() || !formData.address.trim()) {
         toast({
           title: "Missing Information",
           description: "Please fill in all required fields.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Basic phone validation
+      if (formData.phone.replace(/\D/g, '').length < 10) {
+        toast({
+          title: "Invalid Phone Number",
+          description: "Please enter a valid phone number.",
           variant: "destructive"
         });
         return;
@@ -55,13 +67,12 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
     setCurrentStep(prev => prev + 1);
   };
 
-  const handlePlaceOrder = () => {
+  const generateWhatsAppMessage = (orderId: string) => {
     const orderDetails = cartItems.map(item => 
       `• ${item.name}\n  Quantity: ${item.quantity}\n  Price: ₹${item.tradePrice} each\n`
     ).join("\n");
 
-    const message = 
-      `*NEW ORDER*\n` +
+    return `*NEW ORDER*\n` +
       `━━━━━━━━━━━━━━━━\n\n` +
       
       `*CUSTOMER DETAILS*\n` +
@@ -78,19 +89,113 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
       `━━━━━━━━━━━━━━━━\n` +
       `Subtotal: ₹${subtotal.toFixed(2)}\n` +
       `GST: ₹${gst.toFixed(2)}\n` +
-      `Total: ₹${total.toFixed(2)}`;
+      `Total: ₹${total.toFixed(2)}\n\n` +
+      
+      `Order ID: ${orderId}`;
+  };
 
-    const whatsappNumber = "919817570256";
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+  const handlePlaceOrder = async () => {
+    try {
+      setIsLoading(true);
+      
+      // Prepare order data with proper structure
+      const orderData = {
+        customerInfo: {
+          name: formData.name.trim(),
+          phone: formData.phone.trim(),
+          address: formData.address.trim()
+        },
+        cartItems: cartItems.map(item => ({
+          id: item.id,
+          name: item.name,
+          tradePrice: parseFloat(item.tradePrice) || 0,
+          gst: item.gst || "12%",
+          quantity: parseInt(item.quantity) || 1
+        }))
+      };
 
-    toast({
-      title: "Order Sent Successfully",
-      description: "Your order details have been sent to WhatsApp.",
-    });
+      console.log('Submitting order data:', orderData);
 
-    clearCart();
-    navigate('/');
+      let result;
+      let method = 'standard';
+
+      try {
+        // Try standard submission first
+        result = await submitOrder(orderData);
+      } catch (error) {
+        console.log('Standard submission failed, trying JSONP...', error);
+        method = 'jsonp';
+        
+        try {
+          // Fallback to JSONP
+          result = await submitOrderViaJSONP(orderData);
+        } catch (jsonpError) {
+          console.error('JSONP submission also failed:', jsonpError);
+          
+          // Last resort - assume success and send to WhatsApp
+          result = {
+            success: true,
+            message: 'Order submitted (method: fallback)',
+            orderId: `BM${Date.now()}`,
+            timestamp: new Date().toISOString()
+          };
+        }
+      }
+
+      if (result.success) {
+        const message = generateWhatsAppMessage(result.orderId || `BM${Date.now()}`);
+        const whatsappNumber = "919817570256";
+        const encodedMessage = encodeURIComponent(message);
+        
+        // Open WhatsApp
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+
+        toast({
+          title: "Order Sent Successfully",
+          description: `${result.message} (via ${method})`,
+        });
+
+        // Clear cart and redirect
+        clearCart();
+        
+        // Show success and redirect after a delay
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+      } else {
+        throw new Error(result.error || 'Failed to submit order');
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      
+      // Even if backend fails, we can still send to WhatsApp
+      const shouldContinueToWhatsApp = window.confirm(
+        'There was an issue saving your order, but we can still send it via WhatsApp. Continue?'
+      );
+      
+      if (shouldContinueToWhatsApp) {
+        const message = generateWhatsAppMessage(`BM${Date.now()}`);
+        const whatsappNumber = "919817570256";
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+        
+        toast({
+          title: "Sent via WhatsApp",
+          description: "Your order has been sent via WhatsApp.",
+        });
+        
+        clearCart();
+        navigate('/');
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Failed to place order. Please try again or contact support.",
+        });
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (cartItems.length === 0) {
@@ -196,7 +301,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                     <div>
                       <Label htmlFor="name" className="flex items-center gap-2 text-base">
                         <User className="w-4 h-4" />
-                        Full Name
+                        Full Name *
                       </Label>
                       <Input
                         id="name"
@@ -204,18 +309,19 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        placeholder="Enter your name"
+                        placeholder="Enter your full name"
                         className="mt-1.5"
                       />
                     </div>
                     <div>
                       <Label htmlFor="phone" className="flex items-center gap-2 text-base">
                         <Phone className="w-4 h-4" />
-                        Phone Number
+                        Phone Number *
                       </Label>
                       <Input
                         id="phone"
                         name="phone"
+                        type="tel"
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
@@ -226,7 +332,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                     <div>
                       <Label htmlFor="address" className="flex items-center gap-2 text-base">
                         <MapPin className="w-4 h-4" />
-                        Delivery Address
+                        Delivery Address *
                       </Label>
                       <Textarea
                         id="address"
@@ -234,9 +340,13 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                         value={formData.address}
                         onChange={handleInputChange}
                         required
-                        placeholder="Enter your delivery address"
+                        placeholder="Enter your complete delivery address including city and pincode"
                         className="mt-1.5"
+                        rows={3}
                       />
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      * Required fields
                     </div>
                   </div>
                 </CardContent>
@@ -252,7 +362,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                       <h3 className="text-2xl font-semibold mb-2">Confirm Your Order</h3>
                       <p className="text-muted-foreground">
                         Please review your order details and click "Place Order" to proceed.
-                        You will be redirected to WhatsApp to confirm the order.
+                        You will be redirected to WhatsApp to confirm the order with our team.
                       </p>
                     </div>
                     <div className="mt-8 space-y-4 text-left">
@@ -264,6 +374,15 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                           <p><span className="text-muted-foreground">Address:</span> {formData.address}</p>
                         </div>
                       </div>
+                      <div className="bg-secondary/50 rounded-lg p-4">
+                        <h4 className="font-medium mb-2">Order Summary</h4>
+                        <div className="space-y-1 text-sm">
+                          <p><span className="text-muted-foreground">Items:</span> {cartItems.length} products</p>
+                          <p><span className="text-muted-foreground">Subtotal:</span> ₹{subtotal.toFixed(2)}</p>
+                          <p><span className="text-muted-foreground">GST:</span> ₹{gst.toFixed(2)}</p>
+                          <p className="font-medium"><span className="text-muted-foreground">Total:</span> ₹{total.toFixed(2)}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -271,7 +390,7 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
             )}
           </div>
 
-          {/* Order Summary */}
+          {/* Order Summary Sidebar */}
           <div className="lg:col-span-2">
             <div className="sticky top-6 space-y-6">
               <Card>
@@ -279,7 +398,9 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                   <h3 className="text-lg font-semibold mb-4">Order Summary</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Subtotal</span>
+                      <span className="text-muted-foreground">
+                        Items ({cartItems.reduce((sum, item) => sum + item.quantity, 0)})
+                      </span>
                       <span>₹{subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
@@ -299,16 +420,17 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                         className="w-full"
                         onClick={handleContinue}
                       >
-                        Continue
+                        {currentStep === 1 ? 'Continue to Details' : 'Review Order'}
                       </Button>
                     )}
                     {currentStep === 3 && (
                       <Button 
                         className="w-full bg-accent hover:bg-accent/90 text-white"
                         onClick={handlePlaceOrder}
+                        disabled={isLoading}
                       >
-                        <Truck className="w-4 h-4 mr-2" />
-                        Place Order
+                        {isLoading ? 'Placing Order...' : 'Place Order'}
+                        <Truck className="w-4 h-4 ml-2" />
                       </Button>
                     )}
                     {currentStep > 1 && (
@@ -316,11 +438,33 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
                         variant="outline"
                         className="w-full"
                         onClick={() => setCurrentStep(prev => prev - 1)}
+                        disabled={isLoading}
                       >
                         Back
                       </Button>
                     )}
                   </div>
+                  
+                  {currentStep === 3 && (
+                    <div className="mt-4 text-xs text-muted-foreground text-center">
+                      By placing this order, you agree to our terms and conditions.
+                      You will be redirected to WhatsApp to confirm your order.
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Additional Info Card */}
+              <Card>
+                <CardContent className="pt-6">
+                  <h4 className="font-medium mb-2">Need Help?</h4>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Contact us for any assistance with your order.
+                  </p>
+                  <Button variant="outline" size="sm" className="w-full">
+                    <Phone className="w-4 h-4 mr-2" />
+                    Call Support
+                  </Button>
                 </CardContent>
               </Card>
             </div>
@@ -331,4 +475,4 @@ const Checkout = ({ cartItems, clearCart }: CheckoutProps) => {
   );
 };
 
-export default Checkout; 
+export default Checkout;

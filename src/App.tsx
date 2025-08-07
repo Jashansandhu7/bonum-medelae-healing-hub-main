@@ -1,6 +1,6 @@
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, createRoutesFromElements } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "sonner";
 import Index from "./pages/Index";
@@ -28,7 +28,7 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <Router>
+        <Router future={{ v7_relativeSplatPath: true }}>
           <Routes>
             <Route path="/" element={<Index cartItems={cartItems} setCartItems={setCartItems} />} />
             <Route path="/checkout" element={<Checkout cartItems={cartItems} clearCart={clearCart} />} />
